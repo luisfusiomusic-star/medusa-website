@@ -1,26 +1,1409 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }
 
+/* ============================================================
+ * MEDUSA BEACH CLUB — site styles migrated 1:1 from the original
+ * static index.html (critical head CSS + injected CSS string).
+ * Only change: asset URLs now point to /public ("/...").
+ * ============================================================ */
+
+/* ===== Critical CSS (was inline in <head>) ===== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Gold scroll progress bar — sits above the navbar, fills L→R as the page
+   is scrolled. Width is driven by JS via inline style. */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #c9a663 0%, #e8d5a3 50%, #c9a663 100%);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+.loading-bar {
+  width: 120px;
+  height: 1px;
+  background: rgba(201, 166, 99, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, #c9a663, transparent);
+  animation: lbSlide 1.6s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+}
+
+@keyframes lbSlide {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* ===== MEDUSA loader (the single, only loader) =====
+   Full-screen gold wordmark whose letters breathe in/out with a layered
+   glow. Sits above everything (z=99999) and dismisses once the hero video
+   can play through (medusa:frames-ready → .hidden → remove). */
+#fallback-loader {
+  position: fixed;
+  inset: 0;
+  background: #082935;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+#fallback-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fallback-letters {
+  display: flex;
+  gap: 0.15em;
+}
+
+.fallback-letters span {
+  font-family: 'Italiana', serif;
+  font-size: clamp(3rem, 10vw, 7rem);
+  color: #c9a663;
+  animation: breathe 2.4s ease-in-out infinite;
+  text-shadow:
+    0 0 20px rgba(201, 166, 99, 0.3),
+    0 0 60px rgba(201, 166, 99, 0.1);
+}
+
+.fallback-letters span:nth-child(1) { animation-delay: 0s; }
+.fallback-letters span:nth-child(2) { animation-delay: 0.15s; }
+.fallback-letters span:nth-child(3) { animation-delay: 0.30s; }
+.fallback-letters span:nth-child(4) { animation-delay: 0.45s; }
+.fallback-letters span:nth-child(5) { animation-delay: 0.60s; }
+.fallback-letters span:nth-child(6) { animation-delay: 0.75s; }
+
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.4;
+    text-shadow:
+      0 0 20px rgba(201, 166, 99, 0.2),
+      0 0 60px rgba(201, 166, 99, 0.05);
+  }
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 30px rgba(201, 166, 99, 0.6),
+      0 0 80px rgba(201, 166, 99, 0.25),
+      0 0 120px rgba(201, 166, 99, 0.1);
+  }
+}
+
+.loader-sponsors {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.loader-sponsors-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: rgba(201, 166, 99, 0.4);
+}
+
+.loader-sponsors img {
+  height: 28px;
+  width: auto;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.loader-sponsors img:hover {
+  opacity: 1;
+}
+
+/* ===== Main site CSS (was the injected CSS template string) ===== */
+
+/* NOTE: scroll-behavior:smooth intentionally NOT set — would break frame-accurate scroll mapping */
+/* NOTE: do NOT add overflow-x: hidden or max-width: 100vw to <html> — both
+   turn html into a scroll container, which breaks position: sticky on the
+   hero canvas (sticky needs the viewport as its containing block).
+   The actual fix for Menu/Vini horizontal overflow lives in the grid
+   template — see minmax(min(Npx, 100%), 1fr) on the .menu-section and
+   .wine-section grids. Body keeps overflow-x: hidden (defined elsewhere)
+   as a clip safety net — that one is safe on body alone. */
+
+:root {
+  --teal: #163d52;
+  --teal-deep: #0F2230;
+  --teal-light: #a8c8d8;
+  --logo-teal: #1c8d9c;
+  --gold: #c9a663;
+  --gold-bright: #d9b87a;
+  --cream: #f5f0e5;
+  --bone: #faf7f0;
+  --text: #1a2830;
+  --font-display: 'Italiana', serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Jost', sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+button { background: none; border: none; cursor: pointer; font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+::selection { background: var(--gold); color: var(--teal-deep); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+
+.skip-link {
+  position: absolute; top: 8px; left: 8px;
+  background: var(--teal-deep); color: var(--gold);
+  padding: 10px 16px; border-radius: 6px;
+  transform: translateY(-200%);
+  transition: transform 0.3s ease;
+  z-index: 9999; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+}
+.skip-link:focus { transform: translateY(0); }
+
+.page-enter {
+  animation: pageEnter 0.5s cubic-bezier(0.32, 0.72, 0, 1) both;
+  will-change: opacity;
+}
+@keyframes pageEnter { from { opacity: 0; } to { opacity: 1; } }
+
+.btn:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -18px rgba(15,34,48,0.55); }
+.btn:active { transform: translateY(-1px); transition-duration: 0.15s; }
+
+.card {
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+              box-shadow 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+              border-color 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+  background: white;
+  border: 1px solid rgba(13,60,74,0.08);
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(15,34,48,0.04);
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 24px 60px -28px rgba(15,34,48,0.35); border-color: rgba(201,166,99,0.35); }
+
+/* ===== Coco Chanel quote section =====
+   Full-width band sitting after the destination picker on Home. Words
+   animate in 80ms apart, the cited author fades in after the last word. */
+.quote-section {
+  background: #082935;
+  padding: 120px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+.quote-ornament {
+  color: #c9a663;
+  letter-spacing: 0.5em;
+  margin-bottom: 40px;
+  font-family: 'Italiana', serif;
+}
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 32px;
+}
+.quote-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.quote-word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.quote-author {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  color: #c9a663;
+  text-transform: uppercase;
+  font-style: normal;
+  opacity: 0;
+  transition: opacity 0.8s ease 0.5s;
+  display: inline-block;
+}
+.quote-author.visible { opacity: 1; }
+
+/* ===== Gold ornament section divider =====
+   Rendered by the <SectionDivider /> React component above key h2 headings
+   and between major content sections. */
+.section-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  opacity: 0.7;
+}
+
+/* Line-by-line reveal animation. Outer .reveal-line is a per-line clipper
+   (overflow hidden) so the inner translate is masked. The .visible class is
+   added by RevealLines once the heading enters the viewport. */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+}
+.reveal-line-inner {
+  display: block;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-line-inner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-link { position: relative; }
+.nav-link::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -3px;
+  height: 1px; background: var(--gold);
+  transform: scaleX(0); transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.nav-link:hover::after, .nav-link[data-active="true"]::after { transform: scaleX(1); }
+
+/* Glass-pill nav items — each word gets its own independent pill on desktop.
+   Style is theme-aware: the parent nav carries data-bg="dark|light", driven
+   by an observer that watches sections tagged with data-bg-context.
+   Default = dark (the first visible section is the hero). */
+.nav-pill {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  padding: 8px 20px;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+              padding 0.3s ease, backdrop-filter 0.3s ease,
+              -webkit-backdrop-filter 0.3s ease;
+}
+/* DARK theme (over hero video, dark sections, footer). Also the fallback
+   when no data-bg is set yet (paint-zero state before the observer fires). */
+nav[data-bg="dark"] .nav-pill,
+nav:not([data-bg]) .nav-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.90);
+}
+nav[data-bg="dark"] .nav-pill:hover,
+nav:not([data-bg]) .nav-pill:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.30);
+}
+nav[data-bg="dark"] .nav-pill[data-active="true"],
+nav:not([data-bg]) .nav-pill[data-active="true"] {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: var(--gold);
+  color: #ffffff;
+}
+/* LIGHT theme (over cream sections — Meteo, the main content of cream pages). */
+nav[data-bg="light"] .nav-pill {
+  background: rgba(8, 41, 53, 0.06);
+  border: 1px solid rgba(8, 41, 53, 0.15);
+  color: #082935;
+}
+nav[data-bg="light"] .nav-pill:hover {
+  background: rgba(8, 41, 53, 0.10);
+  border-color: rgba(201, 166, 99, 0.5);
+}
+nav[data-bg="light"] .nav-pill[data-active="true"] {
+  background: rgba(8, 41, 53, 0.10);
+  border-color: var(--gold);
+  color: #082935;
+}
+/* Scrolled state: tighter padding + stronger blur. Driven by data-scrolled
+   on the pill-group container. */
+.desktop-nav[data-scrolled="true"] .nav-pill,
+[data-scrolled="true"] > .nav-pill-group {
+  padding: 6px 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+/* Static glass pill used to wrap non-button groups (e.g. language switcher).
+   Same glass aesthetic + same dark/light theming. */
+.nav-pill-group {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 50px;
+  padding: 4px 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.15s ease, border-color 0.15s ease, padding 0.3s ease,
+              backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+}
+nav[data-bg="dark"] .nav-pill-group,
+nav:not([data-bg]) .nav-pill-group {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+nav[data-bg="light"] .nav-pill-group {
+  background: rgba(8, 41, 53, 0.06);
+  border: 1px solid rgba(8, 41, 53, 0.15);
+}
+[data-scrolled="true"] .nav-pill-group {
+  padding: 3px 10px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+/* Language-switcher buttons inside the nav pill group — colour follows the
+   same data-bg theme. Outside the nav (mobile dropdown), the default
+   dark-theme colours apply. */
+.lang-btn {
+  padding: 4px 4px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.15s ease, font-weight 0.15s ease;
+}
+.lang-btn.is-active { color: var(--gold); font-weight: 500; }
+.lang-sep { color: rgba(255, 255, 255, 0.85); opacity: 0.35; }
+nav[data-bg="light"] .lang-btn { color: rgba(8, 41, 53, 0.65); }
+nav[data-bg="light"] .lang-btn.is-active { color: var(--gold); }
+nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
+
+/* Dark-surface helper — keeps the section as a positioning context for its
+   own absolutely-positioned children. (The film-grain texture was removed.) */
+.grain { position: relative; isolation: isolate; }
+
+.map-frame { border-radius: 8px; overflow: hidden; box-shadow: 0 30px 80px -40px rgba(15,34,48,0.4); }
+
+/* MagicText paragraph (Filosofia) — same look as the old <p>: centered,
+   italic serif, 760px max. Per-word opacity is driven by MagicText, so no
+   blanket opacity here. The component sets display:flex; flex-wrap:wrap. */
+.filosofia-magic {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  line-height: 1.65;
+  color: var(--text);
+  max-width: 760px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+/* Language splash hover + responsive */
+.lang-splash-btn:hover {
+  color: var(--gold) !important;
+  border-color: var(--gold) !important;
+  background: rgba(201,166,99,0.06) !important;
+  transform: translateY(-2px) !important;
+}
+@media (max-width: 600px) {
+  .lang-splash-grid {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .lang-splash-btn { justify-content: center !important; }
+}
+
+/* WhatsApp floating bubble */
+@media (max-width: 768px) {
+  .whatsapp-bubble {
+    bottom: calc(98px + env(safe-area-inset-bottom)) !important;
+    left: 16px !important;
+    width: 54px !important;
+    height: 54px !important;
+  }
+  .whatsapp-bubble svg { width: 28px; height: 28px; }
+}
+
+/* ===== Always-visible WhatsApp float (every page, every section) =====
+   A diagonal light shimmer that sweeps across the button every few
+   seconds. No glow, no pulsing, no hue cycling. */
+#whatsapp-float-link {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #075E54;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: float-in 0.6s ease 2s both;
+  transition: box-shadow 0.3s ease,
+              transform 0.2s ease;
+}
+#whatsapp-float-link:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+}
+/* Shiny sweep layer */
+#whatsapp-float-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.08) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  animation: shine-sweep 2.8s ease-in-out infinite;
+  animation-delay: 2.6s;
+}
+@keyframes shine-sweep {
+  0%        { left: -100%; opacity: 0; }
+  10%       { opacity: 1; }
+  50%       { left: 140%;  opacity: 1; }
+  51%, 100% { left: 140%;  opacity: 0; }
+}
+@keyframes float-in {
+  from { opacity: 0; transform: scale(0.5) translateY(20px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+@media (max-width: 767px) {
+  #whatsapp-float-link {
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    left: 16px;
+    width: 52px;
+    height: 52px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .desktop-nav, .desktop-nav-right { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+  /* Override the desktop CSS-grid layout — on mobile only the logo and
+     hamburger remain, and they want flex space-between, not three grid
+     columns (which would centre the hamburger). */
+  .nav-padded {
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 16px 22px !important;
+  }
+  .hero-title { letter-spacing: 0.06em !important; }
+}
+@media (max-width: 420px) {
+  .hero-title { font-size: 36px !important; letter-spacing: 0.04em !important; }
+}
+
+/* ===== Auto-zoom Video Hero =====
+   Time-driven (not scroll-driven). A small centered video grows to fill the
+   viewport, then crossfades into the destination picker (which is layered
+   behind it, absolute inset 0). Stage background is the dark teal so any
+   sub-pixel gap around the video reads as the same colour. */
+.hero-zoom-wrap {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: #082935;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* The expanding video frame. width / height / border-radius are driven inline
+   by the expansion progress; opacity is animated by framer-motion. */
+.hero-zoom-video-box {
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 40px 100px -40px rgba(0, 0, 0, 0.6);
+  /* Purely presentational — let clicks pass through to the picker buttons
+     beneath once the video has faded out (opacity:0 alone still intercepts). */
+  pointer-events: none;
+}
+
+/* ===== Destination Picker =====
+   Destination picker — sits as an absolute layer INSIDE the same sticky
+   hero container as the canvas. Layered behind the canvas (z=1 vs canvas's
+   z=2) and faded in from opacity 0 → 1 once the video sequence completes
+   (>= 95% scroll progress). Background colour matches the dark dive so the
+   cross-fade reads as "one world dissolving into the next" — never as a
+   hard cut between sections. */
+.destination-picker {
+  position: absolute;
+  inset: 0;
+  height: 100vh;
+  background: #082935;
+  overflow: hidden;
+  z-index: 1;
+  /* opacity is driven inline by scroll progress (0 → 1 across the
+     92→100 % scroll zone). Fully reversible — scrolling back reveals the
+     video again. No CSS transition for the same reason as the canvas. */
+  opacity: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* Background image layers — absolutely positioned, fade in on hover */
+.dp-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.8s cubic-bezier(0.32, 0.72, 0, 1),
+              transform 1.4s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 0;
+}
+.dp-bg.dp-active {
+  opacity: 1;
+  transform: scale(1);
+}
+/* Dark gradient veil — keeps text + buttons readable over the photos */
+.dp-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(15, 34, 48, 0.50) 0%,
+    rgba(15, 34, 48, 0.72) 50%,
+    rgba(15, 34, 48, 0.88) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+/* Content wrapper sits above both bg layers and the veil */
+.dp-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 80px 24px;
+}
+.destination-picker-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+.destination-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 52px;
+  border: 1px solid #c9a663;
+  background: rgba(15, 34, 48, 0.35);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  color: #c9a663;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(28px, 4.5vw, 44px);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  border-radius: 4px;
+  min-width: 280px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  transition: background 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+              color 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+              transform 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+              box-shadow 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.destination-btn-sub {
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  transition: opacity 0.4s ease;
+}
+.destination-btn:hover {
+  background: #c9a663;
+  color: #0F2230;
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px -20px rgba(201, 166, 99, 0.6);
+  text-shadow: none;
+}
+.destination-btn:hover .destination-btn-sub { opacity: 0.85; }
+
+/* ===== Brigata (Ristorante) — two chef cards that fade + slide up on
+   scroll into view. Dark island inside the cream main; the reveal +
+   hover motion is handled by framer-motion in BrigataGallery.tsx. */
+.brigata-section {
+  background: #082935;
+  padding: 100px 24px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 0 0 80px;
+  box-shadow: 0 30px 80px -40px rgba(15, 34, 48, 0.45);
+}
+.brigata-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(201, 166, 99, 0.5);
+  margin-bottom: 16px;
+}
+.brigata-heading {
+  font-family: 'Italiana', serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 60px;
+}
+.brigata-cards {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.brigata-card {
+  width: 320px;
+  cursor: default;
+}
+.brigata-card-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(201, 166, 99, 0.2);
+  filter: brightness(1);
+  transition: filter 0.3s ease;
+}
+.brigata-card:hover .brigata-card-photo {
+  filter: brightness(1.08);
+}
+.brigata-card-name {
+  font-family: 'Italiana', serif;
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin-top: 20px;
+}
+.brigata-card-role {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a663;
+  margin-top: 6px;
+}
+@media (max-width: 768px) {
+  .brigata-section { padding: 72px 20px; }
+  .brigata-heading { margin-bottom: 44px; }
+  .brigata-card { width: 100%; }
+}
+
+/* ===== ContainerScroll (3D perspective video card) ===== */
+.container-scroll {
+  height: 60rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8px;
+}
+@media (min-width: 769px) {
+  .container-scroll { height: 80rem; padding: 80px; }
+}
+.container-scroll-inner {
+  width: 100%;
+  padding: 40px 0;
+  position: relative;
+  perspective: 1000px;
+}
+@media (min-width: 769px) {
+  .container-scroll-inner { padding: 160px 0; }
+}
+.container-scroll-header {
+  max-width: 1024px;
+  margin: 0 auto;
+  text-align: center;
+  will-change: transform;
+}
+.container-scroll-card {
+  max-width: 1024px;
+  margin: -48px auto 0;
+  height: 30rem;
+  width: 100%;
+  border: 4px solid #6C6C6C;
+  padding: 8px;
+  background: #222222;
+  border-radius: 30px;
+  box-shadow:
+    0 0 #0000004d,
+    0 9px 20px #0000004a,
+    0 37px 37px #00000042,
+    0 84px 50px #00000026,
+    0 149px 60px #0000000a,
+    0 233px 65px #00000003;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+@media (min-width: 769px) {
+  .container-scroll-card { height: 40rem; padding: 24px; }
+}
+.container-scroll-card-inner {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #18181b;
+}
+@media (min-width: 769px) {
+  .container-scroll-card-inner { padding: 16px; }
+}
+.container-scroll-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+.container-scroll-title {
+  font-family: var(--font-display);
+  color: #ffffff;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  margin: 0;
+  line-height: 1.15;
+}
+.container-scroll-headline {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8.5vw, 96px);
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  margin-top: 12px;
+  line-height: 1;
+}
+.container-scroll-kicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 22px;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  /* No hover — show both photos split vertically.
+     Upper half = ristorante (behind ristorante button at the top of the stack);
+     lower half = stabilimento (behind stabilimento button at the bottom). */
+  .dp-bg-rist {
+    opacity: 1;
+    transform: scale(1);
+    bottom: 50%;
+  }
+  .dp-bg-stab {
+    opacity: 1;
+    transform: scale(1);
+    top: 50%;
+  }
+  /* Slim gold separator on the split line for visual rhythm */
+  .destination-picker::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 12%; right: 12%;
+    height: 1px;
+    background: rgba(201, 166, 99, 0.4);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .dp-content { gap: 28px; }
+  .destination-picker-buttons { flex-direction: column; width: 100%; gap: 16px; }
+  .destination-btn { width: 100%; min-width: 0; padding: 24px 32px; font-size: 30px; }
+}
+
+/* Menu / wine item rows — definitive mobile layout.
+   On mobile each item becomes TWO lines (dish name full-width, price
+   right-aligned below) so long names never truncate and prices can't be
+   clipped off-screen. Desktop layout unchanged. */
+@media (max-width: 767px) {
+  .menu-section,
+  .wine-section {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+  .menu-item {
+    display: block !important;
+    padding: 12px 0 !important;
+    border-bottom: 1px solid rgba(201, 166, 99, 0.15) !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+    gap: 0 !important;
+  }
+  .menu-item-name {
+    display: block !important;
+    width: 100% !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 4px !important;
+    padding-left: 0 !important;
+  }
+  .menu-item-price {
+    display: block !important;
+    width: 100% !important;
+    text-align: right !important;
+    color: #c9a663 !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 13px !important;
+    letter-spacing: 0.08em !important;
+    padding-left: 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+/* ===== Simple Photo Carousel (Ristorante) ===== */
+.simple-carousel-section {
+  padding: 0 0 80px;
+  overflow: hidden;
+}
+.simple-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+.simple-carousel-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 20px 0;
+}
+.simple-carousel-track::-webkit-scrollbar { display: none; }
+.simple-carousel-slide {
+  flex: 0 0 auto;
+  /* width is NOT set here — it derives from aspect-ratio + height set inline */
+  height: 500px;
+  border-radius: 24px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.simple-carousel-slide:hover { transform: scale(1.02); }
+.simple-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: filter 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.simple-carousel-slide:hover img { filter: brightness(0.85); }
+.slide-label {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(201,166,99,0.9);
+  color: #082935;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.carousel-arrow {
+  position: absolute;
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(201,166,99,0.3);
+  color: #c9a663;
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.35s cubic-bezier(0.32, 0.72, 0, 1), border-color 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  line-height: 1;
+  padding: 0;
+}
+.carousel-arrow:hover {
+  background: rgba(201,166,99,0.15);
+  border-color: rgba(201,166,99,0.7);
+}
+.carousel-arrow.left  { left: 8px; }
+.carousel-arrow.right { right: 8px; }
+@media (max-width: 767px) {
+  .simple-carousel-slide { height: 340px; }
+  .simple-carousel-wrapper { padding: 0 40px; }
+}
+
+.sponsors-strip {
+  background: #082935;
+  padding: 40px;
+  text-align: center;
+  border-top: 1px solid rgba(201, 166, 99, 0.12);
+}
+
+.sponsors-strip-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(201, 166, 99, 0.4);
+  margin-bottom: 20px;
+}
+
+.sponsors-strip-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.sponsors-strip-logos img {
+  height: 32px;
+  width: auto;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.sponsors-strip-logos img:hover {
+  opacity: 1;
+}
+
+/* Scroll cue inside PageHero (was injected per-mount via a <style> tag). */
+@keyframes scrollCue {
+  0% { transform: translateY(-14px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(36px); opacity: 0; }
+}
+
+/* ============================================================
+ * Cocktail / Drink List page + orbit animation
+ * ============================================================ */
+.cocktail-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 140px 24px 110px;
+}
+.cocktail-split {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 48px;
+}
+.cocktail-left { flex: 1 1 50%; min-width: 0; }
+.cocktail-right { flex: 1 1 50%; min-width: 0; display: flex; justify-content: center; }
+
+.cocktail-kicker {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(201, 166, 99, 0.5);
+  margin-bottom: 16px;
+}
+.cocktail-title {
+  font-family: 'Italiana', serif;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  line-height: 1;
+  margin: 0 0 14px;
+}
+.cocktail-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 40px;
+}
+.cocktail-price { color: #c9a663; font-style: normal; }
+
+.cocktail-list { list-style: none; margin: 0; padding: 0; }
+.cocktail-list-item {
+  padding: 14px 0;
+  border-bottom: 1px dotted rgba(201, 166, 99, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cocktail-name {
+  font-family: 'Italiana', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+.cocktail-ingredients {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.65);
+}
+.cocktail-premium {
+  margin-top: 36px;
+  padding: 22px 26px;
+  border: 1px solid rgba(201, 166, 99, 0.28);
+  border-radius: 6px;
+}
+.cocktail-premium-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(201, 166, 99, 0.55);
+  margin-bottom: 10px;
+}
+.cocktail-premium-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+
+/* ----- orbit ----- */
+.cocktail-orbit {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* clip on mobile so the orbit never overflows */
+}
+.cocktail-orbit-stage {
+  position: relative;
+  width: 480px;
+  height: 480px;
+  flex: none;
+}
+.orbit-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 104px; height: 104px;
+  margin: -52px 0 0 -52px;
+  border-radius: 50%;
+  background: rgba(201, 166, 99, 0.1);
+  border: 1px solid rgba(201, 166, 99, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.orbit-center img { width: 74px; height: auto; opacity: 0.95; }
+.orbit {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px dotted rgba(201, 166, 99, 0.3);
+  border-radius: 50%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.orbit-spinner {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.orbit-glass {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 70px; height: 70px; /* ~70px desktop; the stage scales down on mobile */
+  margin: -35px 0 0 -35px;
+}
+.orbit-glass-spin {
+  width: 100%; height: 100%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+/* The orbit rings/spinners are full-size transparent boxes stacked on top of
+   one another — make them pointer-transparent so an outer ring can't block
+   hover over an inner glass. Only the glass photo itself is the hover target. */
+.orbit,
+.orbit-ring,
+.orbit-spinner,
+.orbit-glass,
+.orbit-glass-spin {
+  pointer-events: none;
+}
+.orbit-glass-media {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+.orbit-glass-img {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  /* photos already carry the #082935 background → no extra circle needed */
+  border: 1px solid rgba(201, 166, 99, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+.orbit-glass-media:hover .orbit-glass-img { transform: scale(1.15); }
+/* Hover tooltip — drink name in gold, just below the glass (stays upright
+   because it lives inside the counter-rotating wrapper). */
+.orbit-glass-tooltip {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9a663;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.orbit-glass-media:hover .orbit-glass-tooltip { opacity: 1; }
+@keyframes cocktail-orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes cocktail-orbit-spin-rev {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@media (max-width: 900px) {
+  .cocktail-main { padding: 116px 20px 90px; }
+  .cocktail-split { flex-direction: column-reverse; gap: 24px; align-items: stretch; }
+  .cocktail-left, .cocktail-right { flex: none; width: 100%; }
+  .cocktail-orbit { height: 460px; }
+  .cocktail-orbit-stage { transform: scale(0.84); }
+}
+@media (max-width: 600px) {
+  /* scale 0.72 → glasses ≈ 50px, orbit ≈ 346px (fits a phone, clipped if not) */
+  .cocktail-orbit { height: 380px; }
+  .cocktail-orbit-stage { transform: scale(0.72); }
 }
