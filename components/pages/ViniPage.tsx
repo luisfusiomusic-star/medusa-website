@@ -4,7 +4,6 @@
  * CARTA VINI — wine list rendered inline. Section titles translate via
  * i18n vini.sections; wine names + prices are LOCKED (printed source).
  */
-import Navbar from '@/components/Navbar';
 import PageHero from '@/components/PageHero';
 import Footer from '@/components/Footer';
 import { DownloadBtn, Reveal } from '@/components/primitives';
@@ -15,7 +14,6 @@ import { VINI_DATA } from '@/lib/menu-data';
 export default function ViniPage({
   nav,
   lang,
-  setLang,
 }: {
   nav: NavFn;
   lang: Lang;
@@ -24,7 +22,6 @@ export default function ViniPage({
   const t = I18N[lang].vini;
   return (
     <div className="grain" style={{ minHeight: '100vh', background: 'var(--teal-deep)', color: 'white' }}>
-      <Navbar page="vini" nav={nav} lang={lang} setLang={setLang} />
       <PageHero photo="/medusa_vini.jpeg" kicker={t.kicker} title={t.title} sub={t.subtitle} />
       <main
         id="main"

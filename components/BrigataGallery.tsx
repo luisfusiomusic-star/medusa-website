@@ -33,7 +33,7 @@ const LABEL: Record<Lang, string> = {
 
 export default function BrigataGallery({ title, lang }: { title: string; lang: Lang }) {
   return (
-    <section className="brigata-section" data-bg-context="dark">
+    <section className="brigata-section medusa-bg" data-bg-context="dark">
       <p className="brigata-label">{LABEL[lang] || LABEL.it}</p>
       <h2 className="brigata-heading">{title}</h2>
 

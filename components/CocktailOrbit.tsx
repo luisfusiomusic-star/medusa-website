@@ -30,19 +30,19 @@ const ORBITS: OrbitConfig[] = [
   { r: 200, dur: 52, reverse: false, items: COCKTAILS.slice(7, 11) },
 ];
 
-function GlassMedia({ name, img }: OrbitCocktail) {
+function GlassMedia({ name, img, onClick }: OrbitCocktail & { onClick: (name: string) => void }) {
   return (
-    <div className="orbit-glass-media">
+    <button type="button" className="orbit-glass-media" onClick={() => onClick(name)} aria-label={name}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={img} alt={name} className="orbit-glass-img" loading="lazy" />
+      <img src={img} alt="" className="orbit-glass-img" loading="lazy" />
       <span className="orbit-glass-tooltip">{name}</span>
-    </div>
+    </button>
   );
 }
 
-export default function CocktailOrbit() {
+export default function CocktailOrbit({ onDrinkClick }: { onDrinkClick: (name: string) => void }) {
   return (
-    <div className="cocktail-orbit" aria-hidden="true">
+    <div className="cocktail-orbit">
       <div className="cocktail-orbit-stage">
         <div className="orbit-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -68,7 +68,7 @@ export default function CocktailOrbit() {
                         className="orbit-glass-spin"
                         style={{ animationName: counter, animationDuration: `${o.dur}s` }}
                       >
-                        <GlassMedia name={c.name} img={c.img} />
+                        <GlassMedia name={c.name} img={c.img} onClick={onDrinkClick} />
                       </div>
                     </div>
                   );

@@ -5,7 +5,6 @@
  * current conditions + next 6 days, with mood lines tied to the venue.
  */
 import { useEffect, useState } from 'react';
-import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Btn, Kicker, Reveal, RevealLines, SectionDivider } from '@/components/primitives';
 import type { Lang, NavFn } from '@/lib/constants';
@@ -33,7 +32,6 @@ interface MeteoData {
 export default function MeteoPage({
   nav,
   lang,
-  setLang,
 }: {
   nav: NavFn;
   lang: Lang;
@@ -110,7 +108,6 @@ export default function MeteoPage({
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--cream)' }}>
-      <Navbar page="meteo" nav={nav} lang={lang} setLang={setLang} />
       <main id="main" data-bg-context="light" style={{ maxWidth: 1040, margin: '0 auto', padding: '160px 24px 100px' }}>
         <Reveal>
           <div style={{ textAlign: 'center', marginBottom: 60 }}>

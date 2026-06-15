@@ -15,6 +15,11 @@ export interface OrbitCocktail {
   img: string;
 }
 
+/** Stable DOM id for a drink's list entry — shared by the orbit (scroll
+ *  target) and the list. e.g. "Spritz St. Germain" → "drink-spritz-st-germain". */
+export const drinkId = (name: string): string =>
+  'drink-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
 export const COCKTAILS: OrbitCocktail[] = [
   { name: 'Spritz', img: '/drinks/spritz.jpeg' },
   // Photo file is "hugo.jpeg" — a Hugo is the St-Germain / elderflower spritz.

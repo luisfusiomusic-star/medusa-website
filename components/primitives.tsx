@@ -26,6 +26,7 @@ interface RevealProps {
   style?: CSSProperties;
   className?: string;
   threshold?: number;
+  id?: string;
 }
 
 export function Reveal({
@@ -36,11 +37,13 @@ export function Reveal({
   style = {},
   className = '',
   threshold,
+  id,
 }: RevealProps) {
   const [ref, visible] = useReveal(threshold);
   return (
     <Tag
       ref={ref}
+      id={id}
       className={className}
       style={{
         opacity: visible ? 1 : 0,

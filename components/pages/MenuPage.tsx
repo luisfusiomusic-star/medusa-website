@@ -5,7 +5,6 @@
  * single on mobile), allergen disclosure, PDF download.
  * Menu content is LOCKED — rendered verbatim from lib/menu-data.ts.
  */
-import Navbar from '@/components/Navbar';
 import PageHero from '@/components/PageHero';
 import Footer from '@/components/Footer';
 import { DownloadBtn, Reveal } from '@/components/primitives';
@@ -16,7 +15,6 @@ import { ALLERGENS_TEXT, MENU_DATA } from '@/lib/menu-data';
 export default function MenuPage({
   nav,
   lang,
-  setLang,
 }: {
   nav: NavFn;
   lang: Lang;
@@ -50,7 +48,6 @@ export default function MenuPage({
 
   return (
     <div className="grain" style={{ minHeight: '100vh', background: 'var(--teal-deep)', color: 'white' }}>
-      <Navbar page="menu" nav={nav} lang={lang} setLang={setLang} />
       <PageHero photo="/medusa_menu.jpeg" kicker={t.kicker} title={t.title} sub={heroSub} />
       <main
         id="main"

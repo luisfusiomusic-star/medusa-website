@@ -18,13 +18,8 @@ export default function MenuDegustazione({ kicker, title, text, course5, course8
   return (
     <Reveal>
       <div
-        className="grain"
+        className="medusa-bg"
         style={{
-          backgroundImage: "url('/background_medusa.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          position: 'relative',
           color: 'white',
           padding: '68px 40px',
           marginBottom: 80,
@@ -33,7 +28,6 @@ export default function MenuDegustazione({ kicker, title, text, course5, course8
           boxShadow: '0 40px 100px -40px rgba(15,34,48,0.5)',
         }}
       >
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,41,53,0.75)', borderRadius: 8, zIndex: 0 }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <Kicker color="var(--gold)" style={{ marginBottom: 22 }}>
             {kicker}

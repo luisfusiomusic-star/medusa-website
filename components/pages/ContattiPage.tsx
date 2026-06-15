@@ -4,7 +4,6 @@
  * CONTATTI — address / phone / hours / email cards, embedded Google map,
  * call-to-book button.
  */
-import Navbar from '@/components/Navbar';
 import PageHero from '@/components/PageHero';
 import Footer from '@/components/Footer';
 import { Btn, Reveal } from '@/components/primitives';
@@ -14,7 +13,6 @@ import { I18N } from '@/lib/i18n';
 export default function ContattiPage({
   nav,
   lang,
-  setLang,
 }: {
   nav: NavFn;
   lang: Lang;
@@ -23,7 +21,6 @@ export default function ContattiPage({
   const t = I18N[lang].contatti;
   return (
     <div style={{ minHeight: '100vh', background: 'var(--cream)' }}>
-      <Navbar page="contatti" nav={nav} lang={lang} setLang={setLang} />
       <PageHero
         photo="/medusa_contatti.jpeg"
         kicker={t.kicker}

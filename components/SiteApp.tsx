@@ -9,6 +9,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { LANG_KEY, LANGS, type Lang, type PageKey } from '@/lib/constants';
 import Loader from '@/components/Loader';
 import ScrollProgress from '@/components/ScrollProgress';
+import Navbar from '@/components/Navbar';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import LanguageSplash from '@/components/LanguageSplash';
 import HomePage from '@/components/pages/HomePage';
@@ -106,6 +107,9 @@ export default function SiteApp() {
     <>
       <Loader />
       <ScrollProgress />
+      {/* Persistent navbar (rendered once) so the tubelight lamp animates
+          across pages instead of remounting per view. */}
+      <Navbar page={page} nav={navigate} lang={lang} setLang={setLang} />
       <div key={navKey} className="page-enter">
         {pages[page]}
       </div>

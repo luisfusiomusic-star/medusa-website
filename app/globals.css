@@ -817,8 +817,32 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
 /* ===== Brigata (Ristorante) — two chef cards that fade + slide up on
    scroll into view. Dark island inside the cream main; the reveal +
    hover motion is handled by framer-motion in BrigataGallery.tsx. */
+/* Shared textured background — ONE definition used by the Brigata section,
+   the Menu Degustazione box, and the Cocktail page so they stay identical.
+   (Uses background_medusa.jpg — the .png was converted to .jpg during
+   the production-asset optimization.) */
+.medusa-bg {
+  position: relative;
+  background-image: url('/background_medusa.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.medusa-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 41, 53, 0.72);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+.medusa-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
 .brigata-section {
-  background: #082935;
   padding: 100px 24px;
   text-align: center;
   border-radius: 8px;
@@ -1406,4 +1430,186 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
   /* scale 0.72 → glasses ≈ 50px, orbit ≈ 346px (fits a phone, clipped if not) */
   .cocktail-orbit { height: 380px; }
   .cocktail-orbit-stage { transform: scale(0.72); }
+}
+
+/* ============================================================
+ * Tubelight navbar — three-zone fixed top bar (logo / pill / lang)
+ * with an animated gold "lamp" on the active item.
+ * ============================================================ */
+.tubelight-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* pill stays centered regardless of sides */
+  align-items: center;
+  gap: 16px;
+  padding: 14px clamp(20px, 4vw, 40px);
+  /* subtle transparent bar that softens content scrolling beneath it */
+  background: linear-gradient(to bottom, rgba(8, 41, 53, 0.35), rgba(8, 41, 53, 0));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* LEFT — logo */
+.tubelight-logo {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.tubelight-logo img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+/* CENTER + RIGHT zone alignment */
+.tubelight-center { justify-self: center; display: flex; justify-content: center; min-width: 0; }
+.tubelight-lang { justify-self: end; display: flex; align-items: center; }
+
+/* RIGHT — language switcher in a matching dark-glass pill */
+.tubelight-lang-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(8, 41, 53, 0.6);
+  border: 1px solid rgba(201, 166, 99, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 400;
+}
+
+/* The pill */
+.tubelight {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 5px;
+  border-radius: 999px;
+  background: rgba(8, 41, 53, 0.6);
+  border: 1px solid rgba(201, 166, 99, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px -16px rgba(0, 0, 0, 0.5);
+}
+
+/* Each item */
+.tubelight-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 8px 18px;
+  border-radius: 999px;
+  transition: color 0.25s ease;
+}
+.tubelight-item:hover { color: #c9a663; }
+.tubelight-item.is-active { color: #c9a663; }
+.tubelight-label { position: relative; z-index: 1; }
+.tubelight-icon { position: relative; z-index: 1; display: none; align-items: center; justify-content: center; }
+
+/* The animated lamp (shared layoutId span) — gold tint + bar + glow */
+.tubelight-lamp {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(201, 166, 99, 0.1);
+  border-radius: 999px;
+}
+.tubelight-lamp-bar {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 4px;
+  background: #c9a663;
+  border-radius: 0 0 8px 8px;
+}
+.tubelight-glow {
+  position: absolute;
+  background: rgba(201, 166, 99, 0.35);
+  border-radius: 999px;
+}
+.tubelight-glow-1 { width: 48px; height: 24px; left: -7px; top: -10px; filter: blur(12px); }
+.tubelight-glow-2 { width: 34px; height: 24px; left: 0; top: -8px; filter: blur(12px); }
+.tubelight-glow-3 { width: 16px; height: 16px; left: 9px; top: -4px; filter: blur(8px); }
+
+@media (max-width: 768px) {
+  .tubelight-nav { padding: 10px 8px; gap: 4px; }
+  .tubelight-logo img { height: 20px; max-width: 76px; }
+  .tubelight { gap: 0; padding: 4px; }
+  /* swap text labels for icons on mobile */
+  .tubelight-label { display: none; }
+  .tubelight-icon { display: inline-flex; }
+  .tubelight-icon svg { width: 16px; height: 16px; }
+  .tubelight-item { padding: 8px 5px; }
+  .tubelight-lamp-bar { width: 20px; top: -5px; }
+  .tubelight-glow-1 { width: 30px; left: -5px; }
+  .tubelight-glow-2 { width: 20px; }
+  /* compact language switcher: drop separators + tighten so all three
+     zones fit one row without overlap */
+  .tubelight-lang-pill { padding: 5px 7px; }
+  .lang-switcher { gap: 3px; font-size: 9px; letter-spacing: 0.04em; }
+  .lang-switcher .lang-sep { display: none; }
+  .lang-switcher .lang-btn { font-size: 9px; padding: 2px 1px; letter-spacing: 0.04em; }
+}
+/* very small phones (≤380px): tighten further so the three zones still fit */
+@media (max-width: 380px) {
+  .tubelight-icon svg { width: 15px; height: 15px; }
+  .tubelight-item { padding: 7px 4px; }
+  .tubelight-logo img { height: 18px; max-width: 66px; }
+  .tubelight-lang-pill { padding: 5px 6px; }
+  .lang-switcher { gap: 2px; font-size: 8.5px; }
+  .lang-switcher .lang-btn { font-size: 8.5px; padding: 2px 1px; }
+}
+
+/* ---- interactive orbit: click a glass → smooth-scroll + flash its list row ---- */
+.orbit-glass-media {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+/* clear the fixed navbar when a row is scrolled into view */
+.cocktail-list-item { scroll-margin-top: 90px; }
+.cocktail-list-item .cocktail-name { transition: color 0.4s ease; }
+.drink-flash {
+  animation: drinkFlash 1.2s ease-out;
+  border-radius: 10px;
+}
+.drink-flash .cocktail-name { color: #c9a663; }
+@keyframes drinkFlash {
+  0%   { background: rgba(201, 166, 99, 0);    box-shadow: 0 0 0 rgba(201, 166, 99, 0); }
+  25%  { background: rgba(201, 166, 99, 0.18); box-shadow: 0 0 24px rgba(201, 166, 99, 0.4); }
+  100% { background: rgba(201, 166, 99, 0);    box-shadow: 0 0 0 rgba(201, 166, 99, 0); }
 }
