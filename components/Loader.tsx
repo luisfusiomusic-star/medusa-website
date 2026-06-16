@@ -50,7 +50,7 @@ export default function Loader() {
         <span>A</span>
       </div>
       <div className="loader-sponsors">
-        <p className="loader-sponsors-label">CON IL SUPPORTO DI</p>
+        <p className="loader-sponsors-label">IN COLLABORAZIONE CON</p>
         <a href={SPONSOR_LINK_MINI} target="_blank" rel="noopener noreferrer">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={SPONSOR_LOGO} alt="Autobi BMW MINI" />

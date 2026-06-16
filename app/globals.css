@@ -250,29 +250,28 @@ body {
   }
 }
 
+/* Sits in normal flow right below the MEDUSA letters (not pinned to the
+   bottom of the screen). */
 .loader-sponsors {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 34px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
 }
 
 .loader-sponsors-label {
   font-family: 'Jost', sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   letter-spacing: 0.4em;
-  color: rgba(201, 166, 99, 0.4);
+  color: rgba(201, 166, 99, 0.55);
 }
 
 .loader-sponsors img {
-  height: 28px;
+  height: 46px;
   width: auto;
-  opacity: 0.6;
+  opacity: 0.75;
   transition: opacity 0.3s ease;
 }
 
