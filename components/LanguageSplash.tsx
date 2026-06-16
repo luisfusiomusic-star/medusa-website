@@ -42,8 +42,10 @@ export default function LanguageSplash({ onChoose }: { onChoose: (code: Lang) =>
         zIndex: 200,
         background: 'var(--teal-deep)',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // Centered via the inner block's margin:auto so it can SCROLL when the
+        // content is taller than a short phone (otherwise the last language is
+        // clipped). flex + justify/align-center would trap the overflow.
+        overflowY: 'auto',
         opacity: picked ? 0 : show ? 1 : 0,
         transition: `opacity 0.45s ${EASE}`,
         padding: '40px 24px',
@@ -60,6 +62,7 @@ export default function LanguageSplash({ onChoose }: { onChoose: (code: Lang) =>
       <div
         style={{
           position: 'relative',
+          margin: 'auto',
           textAlign: 'center',
           color: 'white',
           opacity: show && !picked ? 1 : 0,

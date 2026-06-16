@@ -695,10 +695,12 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
 /* The expanding video frame. width / height / border-radius are driven inline
    by the expansion progress; opacity is animated by framer-motion. */
 .hero-zoom-video-box {
-  position: relative;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   z-index: 2;
-  box-shadow: 0 40px 100px -40px rgba(0, 0, 0, 0.6);
   /* Purely presentational — let clicks pass through to the picker buttons
      beneath once the video has faded out (opacity:0 alone still intercepts). */
   pointer-events: none;
@@ -1674,7 +1676,9 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
 @media (max-width: 768px) {
   .tubelight-nav { padding: 10px 8px; gap: 4px; }
   .tubelight-logo img { height: 20px; max-width: 76px; }
-  .tubelight { gap: 0; padding: 4px; }
+  /* Clip the lamp bar/glow to the pill so it can't spill past the rounded
+     ends on the first (Ristorante) / last (Contatti) items. */
+  .tubelight { gap: 0; padding: 4px; overflow: hidden; }
   /* swap text labels for icons on mobile */
   .tubelight-label { display: none; }
   .tubelight-icon { display: inline-flex; }

@@ -27,7 +27,6 @@ export default function HeroZoom({ nav, lang }: { nav: NavFn; lang: Lang }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
-  const [vp, setVp] = useState({ w: 1280, h: 800 });
 
   const t = I18N[lang].home;
 
@@ -45,13 +44,9 @@ export default function HeroZoom({ nav, lang }: { nav: NavFn; lang: Lang }) {
     },
   ];
 
-  // Pick the source once and track the viewport size (the target expand box).
+  // Pick the source once (desktop / mobile).
   useEffect(() => {
     setVideoSrc(window.innerWidth < MOBILE_BREAKPOINT ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP);
-    const update = () => setVp({ w: window.innerWidth, h: window.innerHeight });
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
   }, []);
 
   // Lock page scroll during the intro; release once the picker takes over.
@@ -117,11 +112,6 @@ export default function HeroZoom({ nav, lang }: { nav: NavFn; lang: Lang }) {
     };
   }, [videoSrc]);
 
-  // Full-screen video — no zoom on either axis.
-  const w = vp.w;
-  const h = vp.h;
-  const radius = 0;
-
   return (
     <div className="hero-zoom-wrap" data-bg-context="dark">
       {/* Destination picker — sits behind the video, revealed as it fades out.
@@ -140,10 +130,9 @@ export default function HeroZoom({ nav, lang }: { nav: NavFn; lang: Lang }) {
         <FlowingMenu items={menuItems} />
       </motion.div>
 
-      {/* Full-screen video (no zoom). */}
+      {/* Full-screen video (no zoom) — fills the wrap, sits behind the navbar. */}
       <motion.div
         className="hero-zoom-video-box"
-        style={{ width: w, height: h, borderRadius: radius }}
         initial={{ opacity: 1 }}
         animate={{ opacity: expanded ? 0 : 1 }}
         transition={{ duration: 0.8, ease: 'easeInOut' }}
