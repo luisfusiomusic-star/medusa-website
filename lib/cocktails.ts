@@ -115,6 +115,141 @@ export interface CocktailCopy {
   premiumPrice: string; // e.g. "20 €"
 }
 
+/* ============================================================================
+ * NAUTICAL-CHART CARD METADATA (decorative — not part of the locked data).
+ * All arrays below are aligned by index with COCKTAILS.
+ * ========================================================================== */
+
+export type GlassType = 'wine' | 'balloon' | 'highball' | 'coupe' | 'rocks';
+export type Creature =
+  | 'seahorse'
+  | 'jellyfish'
+  | 'squid'
+  | 'fish'
+  | 'crab'
+  | 'shell'
+  | 'octopus'
+  | 'seaweed'
+  | 'starfish'
+  | 'tropicalfish'
+  | 'lobster';
+
+export interface DrinkMeta {
+  glass: GlassType;
+  creature: Creature;
+  signature: boolean; // true → "SIGNATURE" kicker, else "COCKTAIL"
+}
+
+/* Glass matches the real serve; one distinct sea creature per drink. */
+export const DRINK_META: DrinkMeta[] = [
+  { glass: 'wine', creature: 'seahorse', signature: false }, // Spritz
+  { glass: 'wine', creature: 'jellyfish', signature: true }, // Spritz St. Germain
+  { glass: 'balloon', creature: 'squid', signature: false }, // Gin Tonic
+  { glass: 'highball', creature: 'fish', signature: false }, // Gin Fizz
+  { glass: 'highball', creature: 'crab', signature: false }, // Moscow Mule
+  { glass: 'coupe', creature: 'shell', signature: false }, // Margarita
+  { glass: 'highball', creature: 'octopus', signature: false }, // Bloody Mary
+  { glass: 'highball', creature: 'seaweed', signature: false }, // Mojito
+  { glass: 'rocks', creature: 'starfish', signature: false }, // Caipirinha
+  { glass: 'highball', creature: 'tropicalfish', signature: false }, // Paloma
+  { glass: 'rocks', creature: 'lobster', signature: true }, // Negroni
+];
+
+/* 2–3 taste descriptors per drink, translated per language, aligned by index. */
+export const DRINK_FLAVOURS: Record<Lang, string[][]> = {
+  it: [
+    ['Amaro', 'Agrumi', 'Frizzante'],
+    ['Floreale', 'Fresco', 'Leggero'],
+    ['Secco', 'Botanico', 'Croccante'],
+    ['Agrumi', 'Morbido', 'Spumoso'],
+    ['Speziato', 'Vivace', 'Rinfrescante'],
+    ['Agrumi', 'Salato', 'Deciso'],
+    ['Sapido', 'Speziato', 'Intenso'],
+    ['Mentato', 'Fresco', 'Dolce'],
+    ['Agrumi', 'Rustico', 'Forte'],
+    ['Pompelmo', 'Aspro', 'Leggero'],
+    ['Amaro', 'Erbaceo', 'Forte'],
+  ],
+  en: [
+    ['Bitter', 'Citrus', 'Sparkling'],
+    ['Floral', 'Fresh', 'Light'],
+    ['Dry', 'Botanical', 'Crisp'],
+    ['Citrus', 'Smooth', 'Foamy'],
+    ['Spicy', 'Zesty', 'Refreshing'],
+    ['Citrus', 'Salty', 'Sharp'],
+    ['Savoury', 'Spicy', 'Bold'],
+    ['Minty', 'Fresh', 'Sweet'],
+    ['Citrus', 'Rustic', 'Strong'],
+    ['Grapefruit', 'Tart', 'Light'],
+    ['Bitter', 'Herbal', 'Strong'],
+  ],
+  de: [
+    ['Bitter', 'Zitrus', 'Spritzig'],
+    ['Blumig', 'Frisch', 'Leicht'],
+    ['Trocken', 'Botanisch', 'Knackig'],
+    ['Zitrus', 'Weich', 'Schaumig'],
+    ['Würzig', 'Spritzig', 'Erfrischend'],
+    ['Zitrus', 'Salzig', 'Scharf'],
+    ['Herzhaft', 'Würzig', 'Kräftig'],
+    ['Minzig', 'Frisch', 'Süß'],
+    ['Zitrus', 'Rustikal', 'Stark'],
+    ['Grapefruit', 'Herb', 'Leicht'],
+    ['Bitter', 'Kräuterig', 'Stark'],
+  ],
+  fr: [
+    ['Amer', 'Agrumes', 'Pétillant'],
+    ['Floral', 'Frais', 'Léger'],
+    ['Sec', 'Botanique', 'Croquant'],
+    ['Agrumes', 'Doux', 'Mousseux'],
+    ['Épicé', 'Acidulé', 'Rafraîchissant'],
+    ['Agrumes', 'Salé', 'Vif'],
+    ['Savoureux', 'Épicé', 'Corsé'],
+    ['Mentholé', 'Frais', 'Sucré'],
+    ['Agrumes', 'Rustique', 'Fort'],
+    ['Pamplemousse', 'Acidulé', 'Léger'],
+    ['Amer', 'Herbacé', 'Fort'],
+  ],
+  es: [
+    ['Amargo', 'Cítrico', 'Burbujeante'],
+    ['Floral', 'Fresco', 'Ligero'],
+    ['Seco', 'Botánico', 'Crujiente'],
+    ['Cítrico', 'Suave', 'Espumoso'],
+    ['Especiado', 'Vivaz', 'Refrescante'],
+    ['Cítrico', 'Salado', 'Intenso'],
+    ['Sabroso', 'Especiado', 'Potente'],
+    ['Mentolado', 'Fresco', 'Dulce'],
+    ['Cítrico', 'Rústico', 'Fuerte'],
+    ['Pomelo', 'Ácido', 'Ligero'],
+    ['Amargo', 'Herbal', 'Fuerte'],
+  ],
+};
+
+/* Section labels for the two columns + the small per-card kicker words. */
+export const DRINK_SECTION_LABELS: Record<Lang, { ingredients: string; flavours: string }> = {
+  it: { ingredients: 'INGREDIENTI', flavours: 'SENTORI' },
+  en: { ingredients: 'INGREDIENTS', flavours: 'FLAVOURS' },
+  de: { ingredients: 'ZUTATEN', flavours: 'AROMEN' },
+  fr: { ingredients: 'INGRÉDIENTS', flavours: 'SAVEURS' },
+  es: { ingredients: 'INGREDIENTES', flavours: 'NOTAS' },
+};
+
+/**
+ * Split a locked ingredient line into individual ingredients + an optional
+ * trailing variant note, WITHOUT rewording. The parenthetical "(anche …)" is
+ * lifted out verbatim as the note; the rest is split on commas into lines.
+ * (Extracting the parenthetical first protects commas inside it.)
+ */
+export function parseIngredientLine(raw: string): { items: string[]; note: string } {
+  const m = raw.match(/^(.*?)\s*\(([^)]*)\)\s*$/);
+  const main = m ? m[1].trim() : raw;
+  const note = m ? m[2].trim() : '';
+  const items = main
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return { items, note };
+}
+
 export const COCKTAIL_COPY: Record<Lang, CocktailCopy> = {
   it: {
     kicker: 'DRINK LIST',

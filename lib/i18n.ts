@@ -65,7 +65,7 @@ export const I18N: Record<Lang, SiteDict> = {
     home: {
       scrollHint: "Scorri in su",
       pickKicker: "Benvenuti al Medusa",
-      pickTitle: "Dove vuoi iniziare?",
+      pickTitle: "Dove vuoi andare?",
       ristorante: "Ristorante",
       stabilimento: "Beach Club",
       ristoranteSub: "Cucina di Mare · Crudo · Vini",
@@ -153,7 +153,7 @@ export const I18N: Record<Lang, SiteDict> = {
     home: {
       scrollHint: "Swipe up",
       pickKicker: "Welcome to Medusa",
-      pickTitle: "Where would you like to begin?",
+      pickTitle: "Where would you like to go?",
       chanelQuote: "Good taste in dressing is something innate, like the sensitivity of the palate",
       scrollKicker: "A Summer Reel",
       scrollTitle: "Discover",
@@ -242,7 +242,7 @@ export const I18N: Record<Lang, SiteDict> = {
     home: {
       scrollHint: "Nach oben wischen",
       pickKicker: "Willkommen im Medusa",
-      pickTitle: "Wo möchten Sie beginnen?",
+      pickTitle: "Wohin möchten Sie gehen?",
       ristorante: "Restaurant",
       stabilimento: "Beach Club",
       ristoranteSub: "Meeresküche · Rohes · Weine",
@@ -331,7 +331,7 @@ export const I18N: Record<Lang, SiteDict> = {
     home: {
       scrollHint: "Glissez vers le haut",
       pickKicker: "Bienvenue au Medusa",
-      pickTitle: "Où souhaitez-vous commencer?",
+      pickTitle: "Où souhaitez-vous aller ?",
       ristorante: "Restaurant",
       stabilimento: "Beach Club",
       ristoranteSub: "Cuisine de mer · Crus · Vins",
@@ -419,7 +419,7 @@ export const I18N: Record<Lang, SiteDict> = {
     home: {
       scrollHint: "Desliza hacia arriba",
       pickKicker: "Bienvenidos a Medusa",
-      pickTitle: "¿Por dónde quieres empezar?",
+      pickTitle: "¿A dónde quieres ir?",
       ristorante: "Restaurante",
       stabilimento: "Beach Club",
       ristoranteSub: "Cocina del mar · Crudo · Vinos",

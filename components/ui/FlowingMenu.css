@@ -1,0 +1,171 @@
+/* FlowingMenu — Medusa palette.
+   bg #082935 · label #fff · marquee strip #c9a663 gold · marquee text #082935
+   · borders rgba(201,166,99,0.3). Two rows split the container height. */
+.flowing-menu {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: #082935;
+  overflow: hidden;
+}
+.flowing-menu__nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each row fills half the container. */
+.flowing-menu__item {
+  flex: 1 1 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-top: 1px solid rgba(201, 166, 99, 0.3);
+}
+.flowing-menu__item:first-child {
+  border-top: none;
+}
+
+/* The clickable label (sits beneath the marquee). */
+.flowing-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Italiana', serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: clamp(2.2rem, 7vh, 5rem);
+  line-height: 1;
+  padding: 0 4vw;
+  white-space: nowrap;
+  transition: opacity 0.4s ease;
+}
+.flowing-menu__link:focus-visible {
+  outline: 2px solid #c9a663;
+  outline-offset: -8px;
+}
+
+/* The marquee overlay — hidden below the row by default; gsap slides it in on
+   hover. pointer-events:none so taps/clicks always reach the link beneath. */
+.flowing-menu__marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  background: #c9a663;
+  transform: translateY(101%);
+}
+.flowing-menu__marquee-wrap {
+  width: 100%;
+  height: 100%;
+  transform: translateY(-101%);
+}
+.flowing-menu__marquee-track {
+  height: 100%;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  animation: flowingMarquee 18s linear infinite;
+  will-change: transform;
+}
+.flowing-menu__marquee-cell {
+  display: inline-flex;
+  align-items: center;
+}
+.flowing-menu__marquee-text {
+  color: #082935;
+  font-family: 'Italiana', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: clamp(2rem, 6.5vh, 4.4rem);
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0 2.4vw;
+}
+.flowing-menu__marquee-img {
+  flex: none;
+  width: clamp(120px, 16vw, 240px);
+  height: clamp(56px, 9vh, 96px);
+  margin: 0 2.4vw;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+}
+
+@keyframes flowingMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* No-hover / mobile: reveal the marquee band by default; it loops on its own.
+   (gsap hover handlers are disabled in JS, so these win.) */
+.flowing-menu__item.is-mobile .flowing-menu__marquee,
+.flowing-menu__item.is-mobile .flowing-menu__marquee-wrap {
+  transform: translateY(0%);
+}
+
+/* Mobile: two full-width stripes that span the screen side-to-side (not pills),
+   sitting just below the heading with a little gap between them; the marquee
+   keeps its images and scrolls more slowly. */
+@media (max-width: 767px) {
+  .flowing-menu {
+    padding: 0; /* stripes reach both screen edges */
+  }
+  .flowing-menu__nav {
+    justify-content: center;
+    gap: 2.4vh; /* a little space between the two stripes */
+  }
+  .flowing-menu__item,
+  .flowing-menu__item:first-child {
+    flex: 0 0 auto; /* content-height band, not half the screen */
+    width: 100%;
+    /* top & bottom rules only — no side borders, so the marquee keeps
+       disappearing off the screen edges. */
+    border: none;
+    border-top: 1px solid rgba(201, 166, 99, 0.55);
+    border-bottom: 1px solid rgba(201, 166, 99, 0.55);
+    border-radius: 0; /* a stripe, not a pill */
+  }
+  /* Outlined, not gold-filled: transparent band, gold text/border over teal. */
+  .flowing-menu__marquee {
+    background: transparent;
+  }
+  .flowing-menu__marquee-text {
+    color: #ffffff;
+    font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+    padding: 0 4vw;
+  }
+  /* Hide the static label so it doesn't show through the transparent band. */
+  .flowing-menu__link {
+    width: 100%;
+    height: auto;
+    padding: 4.6vh 1em; /* stripe height */
+    font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+    color: transparent;
+  }
+  .flowing-menu__marquee-img {
+    width: clamp(110px, 30vw, 160px);
+    height: clamp(48px, 7.5vh, 74px);
+    margin: 0 5vw;
+  }
+  .flowing-menu__marquee-track {
+    animation-duration: 40s;
+  }
+  /* Desync the bottom stripe so its text/images don't line up with the top. */
+  .flowing-menu__item:last-child .flowing-menu__marquee-track {
+    animation-delay: -11s;
+  }
+}

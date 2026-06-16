@@ -718,12 +718,45 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
   background: #082935;
   overflow: hidden;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
   /* opacity is driven inline by scroll progress (0 → 1 across the
      92→100 % scroll zone). Fully reversible — scrolling back reveals the
      video again. No CSS transition for the same reason as the canvas. */
   opacity: 0;
   margin: 0 !important;
   padding: 0 !important;
+}
+/* Heading above the two rows. */
+.dp-title {
+  flex: none;
+  text-align: center;
+  font-family: 'Italiana', serif;
+  font-weight: 400;
+  color: #c9a663;
+  letter-spacing: 0.08em;
+  font-size: clamp(30px, 4.6vw, 54px);
+  margin: 0;
+  padding: 104px 24px 44px;
+  /* Stay on a single line in every language (EN/DE/FR are longer). */
+  white-space: nowrap;
+}
+.destination-picker .flowing-menu {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+}
+@media (max-width: 767px) {
+  /* Center the (question + two stripes) group in the area BELOW the fixed
+     navbar (top padding compensates for the bar + notch) so it reads as
+     optically centred rather than sitting high. */
+  .destination-picker {
+    justify-content: center;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) 0 0 !important;
+  }
+  .destination-picker .flowing-menu { flex: 0 0 auto; }
+  /* Size to fit the longest language on one line. */
+  .dp-title { padding: 0 12px 9vh; font-size: clamp(20px, 6vw, 34px); letter-spacing: 0.03em; }
 }
 /* Background image layers — absolutely positioned, fade in on hover */
 .dp-bg {
@@ -842,70 +875,40 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
   z-index: 1;
 }
 
+/* No box: the title and the card chain sit free on the cream page. */
 .brigata-section {
-  padding: 100px 24px;
+  margin: 24px 0 64px;
   text-align: center;
-  border-radius: 8px;
-  margin: 0 0 80px;
-  box-shadow: 0 30px 80px -40px rgba(15, 34, 48, 0.45);
 }
+.brigata-head { margin-bottom: 28px; }
 .brigata-label {
   font-family: 'Jost', sans-serif;
   font-size: 0.65rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(201, 166, 99, 0.5);
+  color: var(--gold);
   margin-bottom: 16px;
 }
 .brigata-heading {
   font-family: 'Italiana', serif;
   font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-weight: 400;
-  color: #ffffff;
-  margin-bottom: 60px;
+  color: var(--teal-deep);
+  margin: 0;
+  line-height: 1.05;
 }
-.brigata-cards {
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.brigata-card {
-  width: 320px;
-  cursor: default;
-}
-.brigata-card-photo {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid rgba(201, 166, 99, 0.2);
-  filter: brightness(1);
-  transition: filter 0.3s ease;
-}
-.brigata-card:hover .brigata-card-photo {
-  filter: brightness(1.08);
-}
-.brigata-card-name {
-  font-family: 'Italiana', serif;
-  font-size: 1.6rem;
-  color: #ffffff;
-  margin-top: 20px;
-}
-.brigata-card-role {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #c9a663;
-  margin-top: 6px;
+/* Full-bleed: the ring spans the whole screen width so the cards flow off the
+   edges instead of being clipped by a centered box. (body has overflow-x:hidden,
+   so 100vw can't introduce a horizontal scrollbar.) The CircularGallery fills
+   this wrapper, so it needs an explicit height. */
+.brigata-gallery-wrap {
+  position: relative;
+  height: 560px;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 @media (max-width: 768px) {
-  .brigata-section { padding: 72px 20px; }
-  .brigata-heading { margin-bottom: 44px; }
-  .brigata-card { width: 100%; }
+  .brigata-gallery-wrap { height: 440px; }
 }
 
 /* ===== ContainerScroll (3D perspective video card) ===== */
@@ -1002,35 +1005,6 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
   display: inline-block;
 }
 
-@media (max-width: 768px) {
-  /* No hover — show both photos split vertically.
-     Upper half = ristorante (behind ristorante button at the top of the stack);
-     lower half = stabilimento (behind stabilimento button at the bottom). */
-  .dp-bg-rist {
-    opacity: 1;
-    transform: scale(1);
-    bottom: 50%;
-  }
-  .dp-bg-stab {
-    opacity: 1;
-    transform: scale(1);
-    top: 50%;
-  }
-  /* Slim gold separator on the split line for visual rhythm */
-  .destination-picker::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 12%; right: 12%;
-    height: 1px;
-    background: rgba(201, 166, 99, 0.4);
-    z-index: 1;
-    pointer-events: none;
-  }
-  .dp-content { gap: 28px; }
-  .destination-picker-buttons { flex-direction: column; width: 100%; gap: 16px; }
-  .destination-btn { width: 100%; min-width: 0; padding: 24px 32px; font-size: 30px; }
-}
 
 /* Menu / wine item rows — definitive mobile layout.
    On mobile each item becomes TWO lines (dish name full-width, price
@@ -1223,14 +1197,9 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
   margin: 0 auto;
   padding: 140px 24px 110px;
 }
-.cocktail-split {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 48px;
-}
-.cocktail-left { flex: 1 1 50%; min-width: 0; }
-.cocktail-right { flex: 1 1 50%; min-width: 0; display: flex; justify-content: center; }
+/* Orbit centered at top, then a vertical stack of drink "chart" cards. */
+.cocktail-head { text-align: center; max-width: 720px; margin: 0 auto; }
+.cocktail-orbit-wrap { display: flex; justify-content: center; margin: 4px 0 60px; }
 
 .cocktail-kicker {
   font-family: 'Jost', sans-serif;
@@ -1258,26 +1227,157 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
 }
 .cocktail-price { color: #c9a663; font-style: normal; }
 
-.cocktail-list { list-style: none; margin: 0; padding: 0; }
-.cocktail-list-item {
-  padding: 14px 0;
-  border-bottom: 1px dotted rgba(201, 166, 99, 0.18);
+/* ===== Drink "nautical chart" cards ===== */
+.drink-cards {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 36px;
+  max-width: 960px;
+  margin: 0 auto;
 }
-.cocktail-name {
+/* Card: a clean teal "chart" panel (subtly lighter than the page so the gold
+   frame + sea-creature line art read clearly) with a gold double-ruled frame. */
+.drink-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+  border: 1px solid rgba(201, 166, 99, 0.45);
+  border-radius: 4px;
+  scroll-margin-top: 100px;
+  overflow: hidden;
+}
+.drink-card::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(201, 166, 99, 0.28);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 2;
+}
+.drink-card-inner { position: relative; padding: 40px 44px 30px; z-index: 2; }
+
+/* Corner flourishes — small gold ticks at each inner-frame corner. */
+.drink-card-inner::before,
+.drink-card-inner::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+.drink-card-inner::before {
+  top: 4px; left: 4px;
+  border-top: 1px solid rgba(201, 166, 99, 0.6);
+  border-left: 1px solid rgba(201, 166, 99, 0.6);
+}
+.drink-card-inner::after {
+  bottom: 4px; right: 4px;
+  border-bottom: 1px solid rgba(201, 166, 99, 0.6);
+  border-right: 1px solid rgba(201, 166, 99, 0.6);
+}
+
+.drink-card-head {
+  text-align: center;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid rgba(201, 166, 99, 0.2);
+}
+.drink-card-kicker {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: rgba(201, 166, 99, 0.7);
+  margin: 0 0 12px;
+}
+.drink-card-titlerow {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.drink-card-name {
   font-family: 'Italiana', serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.04em;
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  letter-spacing: 0.05em;
   color: #ffffff;
+  line-height: 1.05;
+  margin: 0;
 }
-.cocktail-ingredients {
+.drink-card-price {
+  font-family: 'Jost', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: #c9a663;
+  white-space: nowrap;
+}
+
+/* Two columns: ingredients | flavours */
+.drink-card-cols {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+}
+.drink-card-col { min-width: 0; }
+.drink-card-col-flavours {
+  border-left: 1px solid rgba(201, 166, 99, 0.18);
+  padding-left: 32px;
+}
+.drink-card-collabel {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #c9a663;
+  margin: 0 0 14px;
+}
+.drink-card-ingredients {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.drink-card-ingredients li {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 1.12rem;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.8);
+}
+.drink-card-flavours {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.18rem;
+  letter-spacing: 0.02em;
+  color: #c9a663;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Verbatim variant note under the columns */
+.drink-card-note {
+  margin: 22px 0 0;
+  padding-top: 16px;
+  border-top: 1px dotted rgba(201, 166, 99, 0.2);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  color: rgba(201, 166, 99, 0.75);
+  text-align: center;
+}
+
+/* Sea-creature line art — wide decorative band low in the card */
+.drink-card-creature {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  color: #c9a663;
+}
+.drink-creature-svg {
+  width: auto;
+  max-width: 60%;
+  height: 96px;
+  opacity: 0.5;
 }
 .cocktail-premium {
   margin-top: 36px;
@@ -1421,15 +1521,25 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
 
 @media (max-width: 900px) {
   .cocktail-main { padding: 116px 20px 90px; }
-  .cocktail-split { flex-direction: column-reverse; gap: 24px; align-items: stretch; }
-  .cocktail-left, .cocktail-right { flex: none; width: 100%; }
   .cocktail-orbit { height: 460px; }
   .cocktail-orbit-stage { transform: scale(0.84); }
+  .cocktail-orbit-wrap { margin-bottom: 44px; }
 }
 @media (max-width: 600px) {
   /* scale 0.72 → glasses ≈ 50px, orbit ≈ 346px (fits a phone, clipped if not) */
   .cocktail-orbit { height: 380px; }
   .cocktail-orbit-stage { transform: scale(0.72); }
+  /* Columns stack; creature art scales down. */
+  .drink-card-inner { padding: 30px 22px 24px; }
+  .drink-card-cols { grid-template-columns: 1fr; gap: 22px; }
+  .drink-card-col-flavours {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(201, 166, 99, 0.18);
+    padding-top: 20px;
+  }
+  .drink-creature-svg { max-width: 78%; height: 80px; }
+  .drink-card-name { font-size: clamp(1.5rem, 7vw, 2rem); }
 }
 
 /* ============================================================
@@ -1600,16 +1710,12 @@ nav[data-bg="light"] .lang-sep { color: rgba(8, 41, 53, 0.65); }
   -webkit-appearance: none;
   appearance: none;
 }
-/* clear the fixed navbar when a row is scrolled into view */
-.cocktail-list-item { scroll-margin-top: 90px; }
-.cocktail-list-item .cocktail-name { transition: color 0.4s ease; }
+/* Orbit click → scroll target flashes its gold frame + glow. */
 .drink-flash {
-  animation: drinkFlash 1.2s ease-out;
-  border-radius: 10px;
+  animation: drinkFlash 1.4s ease-out;
 }
-.drink-flash .cocktail-name { color: #c9a663; }
 @keyframes drinkFlash {
-  0%   { background: rgba(201, 166, 99, 0);    box-shadow: 0 0 0 rgba(201, 166, 99, 0); }
-  25%  { background: rgba(201, 166, 99, 0.18); box-shadow: 0 0 24px rgba(201, 166, 99, 0.4); }
-  100% { background: rgba(201, 166, 99, 0);    box-shadow: 0 0 0 rgba(201, 166, 99, 0); }
+  0%   { box-shadow: 0 0 0 rgba(201, 166, 99, 0);    border-color: rgba(201, 166, 99, 0.45); }
+  25%  { box-shadow: 0 0 32px rgba(201, 166, 99, 0.5); border-color: rgba(201, 166, 99, 0.95); }
+  100% { box-shadow: 0 0 0 rgba(201, 166, 99, 0);    border-color: rgba(201, 166, 99, 0.45); }
 }
