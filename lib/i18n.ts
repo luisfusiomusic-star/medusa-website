@@ -88,7 +88,7 @@ export const I18N: Record<Lang, SiteDict> = {
       photos: ["La Passeggiata", "Tramonto", "Solarium"],
       ctaKicker: "Prenotazioni", ctaTitle: "PRENOTA LA TUA POSTAZIONE",
       ctaText: "Le postazioni si esauriscono presto, soprattutto nei weekend. Prenota in anticipo per assicurarti il tuo posto al sole.",
-      ctaBtn: "bagnimedusanervi@gmail.com"
+      ctaBtn: "+39 010 372 8113"
     },
     rist: {
       kicker: "Cucina di Mare", title: "RISTORANTE",
@@ -175,7 +175,7 @@ export const I18N: Record<Lang, SiteDict> = {
       photos: ["The Promenade", "Sunset", "Solarium"],
       ctaKicker: "Reservations", ctaTitle: "BOOK YOUR SPOT",
       ctaText: "Spots fill up quickly, especially on weekends. Book in advance to secure your place in the sun.",
-      ctaBtn: "bagnimedusanervi@gmail.com"
+      ctaBtn: "+39 010 372 8113"
     },
     rist: {
       kicker: "Seafood Cuisine", title: "RESTAURANT",
@@ -263,7 +263,7 @@ export const I18N: Record<Lang, SiteDict> = {
       photos: ["Die Promenade", "Sonnenuntergang", "Solarium"],
       ctaKicker: "Reservierung", ctaTitle: "RESERVIEREN SIE IHREN PLATZ",
       ctaText: "Die Plätze sind schnell ausgebucht, besonders am Wochenende. Reservieren Sie früh, um Ihren Platz an der Sonne zu sichern.",
-      ctaBtn: "bagnimedusanervi@gmail.com"
+      ctaBtn: "+39 010 372 8113"
     },
     rist: {
       kicker: "Meeresküche", title: "RESTAURANT",
@@ -351,7 +351,7 @@ export const I18N: Record<Lang, SiteDict> = {
       photos: ["La Promenade", "Coucher de soleil", "Solarium"],
       ctaKicker: "Réservations", ctaTitle: "RÉSERVEZ VOTRE PLACE",
       ctaText: "Les places partent vite, surtout le week-end. Réservez à l'avance pour vous assurer votre place au soleil.",
-      ctaBtn: "bagnimedusanervi@gmail.com"
+      ctaBtn: "+39 010 372 8113"
     },
     rist: {
       kicker: "Cuisine de la Mer", title: "RESTAURANT",
@@ -438,7 +438,7 @@ export const I18N: Record<Lang, SiteDict> = {
       photos: ["El Paseo", "Atardecer", "Solárium"],
       ctaKicker: "Reservas", ctaTitle: "RESERVA TU PLAZA",
       ctaText: "Las plazas se agotan rápido, sobre todo los fines de semana. Reserva con antelación para asegurar tu lugar bajo el sol.",
-      ctaBtn: "bagnimedusanervi@gmail.com"
+      ctaBtn: "+39 010 372 8113"
     },
     rist: {
       kicker: "Cocina del Mar", title: "RESTAURANTE",

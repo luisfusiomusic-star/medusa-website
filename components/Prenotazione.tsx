@@ -2,10 +2,10 @@
 
 /**
  * Booking CTA band (Beach Club) — dark island over background_medusa.jpg
- * with the bagnimedusanervi@gmail.com mailto button.
+ * with a click-to-call phone button (+39 010 372 8113).
  */
 import { Btn, Kicker, Reveal } from '@/components/primitives';
-import { EMAIL_BEACH } from '@/lib/constants';
+import { PHONE } from '@/lib/constants';
 
 interface PrenotazioneProps {
   kicker: string;
@@ -60,7 +60,7 @@ export default function Prenotazione({ kicker, title, text, btn }: PrenotazioneP
           >
             {text}
           </p>
-          <Btn as="a" variant="gold" href={`mailto:${EMAIL_BEACH}`}>
+          <Btn as="a" variant="gold" href={`tel:${PHONE}`}>
             {btn}
           </Btn>
         </div>
