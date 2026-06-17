@@ -81,10 +81,9 @@ export const I18N: Record<Lang, SiteDict> = {
       welcomeKicker: "Benvenuti", welcomeTitle: "UN ANGOLO DI LIGURIA",
       welcomeText: "Sulla Passeggiata Anita Garibaldi, dove gli scogli incontrano il mare, Medusa è il rifugio dove le giornate scorrono al ritmo delle onde. Un sorso di Vermentino, il sole sulla pelle, e il tempo che si ferma.",
       services: [
-        ["Ombrelloni & Lettini", "Postazioni curate con ombrellone, due lettini e cassaforte privata."],
+        ["Ombrelloni & Sdraio", "Postazioni curate con ombrellone e due sdraio."],
         ["Bar & Aperitivo", "Cocktail, vini al calice e taglieri serviti in spiaggia, dalle 10 alle 19."],
-        ["Sport & Attività", "SUP, kayak, beach volley. Lezioni di yoga al mattino, ogni mercoledì."],
-        ["Doccia & Servizi", "Cabine private, docce calde, deposito borse, Wi-Fi gratuito."]
+        ["Doccia & Servizi", "Spogliatoio, docce calde, deposito borse, Wi-Fi gratuito."]
       ],
       photos: ["La Passeggiata", "Tramonto", "Solarium"],
       ctaKicker: "Prenotazioni", ctaTitle: "PRENOTA LA TUA POSTAZIONE",
@@ -169,10 +168,9 @@ export const I18N: Record<Lang, SiteDict> = {
       welcomeKicker: "Welcome", welcomeTitle: "A CORNER OF LIGURIA",
       welcomeText: "On the Passeggiata Anita Garibaldi, where the rocks meet the sea, Medusa is the refuge where days flow to the rhythm of the waves. A sip of Vermentino, the sun on your skin, and time stands still.",
       services: [
-        ["Umbrellas & Sunbeds", "Curated spots with umbrella, two sunbeds and private safe."],
+        ["Umbrellas & Deck chairs", "Curated spots with umbrella and two deck chairs."],
         ["Bar & Aperitif", "Cocktails, wines by the glass and platters served on the beach, 10am to 7pm."],
-        ["Sports & Activities", "SUP, kayak, beach volleyball. Morning yoga classes, every Wednesday."],
-        ["Shower & Services", "Private cabins, hot showers, bag storage, free Wi-Fi."]
+        ["Shower & Services", "Changing room, hot showers, bag storage, free Wi-Fi."]
       ],
       photos: ["The Promenade", "Sunset", "Solarium"],
       ctaKicker: "Reservations", ctaTitle: "BOOK YOUR SPOT",
@@ -258,10 +256,9 @@ export const I18N: Record<Lang, SiteDict> = {
       welcomeKicker: "Willkommen", welcomeTitle: "EIN STÜCK LIGURIEN",
       welcomeText: "An der Passeggiata Anita Garibaldi, wo die Felsen das Meer treffen, ist Medusa der Ort, an dem die Tage im Rhythmus der Wellen vergehen. Ein Schluck Vermentino, die Sonne auf der Haut, und die Zeit steht still.",
       services: [
-        ["Sonnenschirme & Liegen", "Gepflegte Plätze mit Schirm, zwei Liegen und Privatsafe."],
+        ["Sonnenschirme & Liegestühle", "Gepflegte Plätze mit Schirm und zwei Liegestühlen."],
         ["Bar & Aperitif", "Cocktails, Weine im Glas und Brettjausen am Strand, 10 bis 19 Uhr."],
-        ["Sport & Aktivitäten", "SUP, Kajak, Beachvolleyball. Morgen-Yoga jeden Mittwoch."],
-        ["Dusche & Service", "Privatkabinen, Warmduschen, Gepäckaufbewahrung, kostenloses WLAN."]
+        ["Dusche & Service", "Umkleide, Warmduschen, Gepäckaufbewahrung, kostenloses WLAN."]
       ],
       photos: ["Die Promenade", "Sonnenuntergang", "Solarium"],
       ctaKicker: "Reservierung", ctaTitle: "RESERVIEREN SIE IHREN PLATZ",
@@ -347,10 +344,9 @@ export const I18N: Record<Lang, SiteDict> = {
       welcomeKicker: "Bienvenue", welcomeTitle: "UN COIN DE LIGURIE",
       welcomeText: "Sur la Passeggiata Anita Garibaldi, où les rochers rencontrent la mer, Medusa est le refuge où les journées s'écoulent au rythme des vagues. Une gorgée de Vermentino, le soleil sur la peau, et le temps s'arrête.",
       services: [
-        ["Parasols & Transats", "Emplacements soignés avec parasol, deux transats et coffre privé."],
+        ["Parasols & Transats", "Emplacements soignés avec parasol et deux transats."],
         ["Bar & Apéritif", "Cocktails, vins au verre et planches servis sur la plage, de 10h à 19h."],
-        ["Sport & Activités", "SUP, kayak, beach-volley. Cours de yoga le matin, tous les mercredis."],
-        ["Douche & Services", "Cabines privées, douches chaudes, consigne, Wi-Fi gratuit."]
+        ["Douche & Services", "Vestiaire, douches chaudes, consigne, Wi-Fi gratuit."]
       ],
       photos: ["La Promenade", "Coucher de soleil", "Solarium"],
       ctaKicker: "Réservations", ctaTitle: "RÉSERVEZ VOTRE PLACE",
@@ -435,10 +431,9 @@ export const I18N: Record<Lang, SiteDict> = {
       welcomeKicker: "Bienvenidos", welcomeTitle: "UN RINCÓN DE LIGURIA",
       welcomeText: "En la Passeggiata Anita Garibaldi, donde las rocas se encuentran con el mar, Medusa es el refugio donde los días fluyen al ritmo de las olas. Un sorbo de Vermentino, el sol en la piel, y el tiempo se detiene.",
       services: [
-        ["Sombrillas y Tumbonas", "Plazas cuidadas con sombrilla, dos tumbonas y caja fuerte privada."],
+        ["Sombrillas y Hamacas", "Plazas cuidadas con sombrilla y dos hamacas."],
         ["Bar y Aperitivo", "Cócteles, vinos por copa y tablas servidas en la playa, de 10 a 19h."],
-        ["Deporte y Actividades", "SUP, kayak, vóley playa. Clases de yoga por la mañana, cada miércoles."],
-        ["Ducha y Servicios", "Cabinas privadas, duchas calientes, consigna, Wi-Fi gratis."]
+        ["Ducha y Servicios", "Vestuario, duchas calientes, consigna, Wi-Fi gratis."]
       ],
       photos: ["El Paseo", "Atardecer", "Solárium"],
       ctaKicker: "Reservas", ctaTitle: "RESERVA TU PLAZA",
