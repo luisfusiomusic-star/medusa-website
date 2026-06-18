@@ -10,14 +10,16 @@ import type { Lang, NavFn } from '@/lib/constants';
 export default function HomePage({
   nav,
   lang,
+  start,
 }: {
   nav: NavFn;
   lang: Lang;
   setLang: (l: Lang) => void;
+  start: boolean;
 }) {
   return (
     <div style={{ background: '#082935', position: 'relative' }}>
-      <HeroZoom nav={nav} lang={lang} />
+      <HeroZoom nav={nav} lang={lang} start={start} />
     </div>
   );
 }

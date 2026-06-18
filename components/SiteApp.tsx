@@ -93,7 +93,7 @@ export default function SiteApp() {
   };
 
   const pages: Record<PageKey, ReactNode> = {
-    home: <HomePage nav={navigate} lang={lang} setLang={setLang} />,
+    home: <HomePage nav={navigate} lang={lang} setLang={setLang} start={booted && !showSplash} />,
     stabilimento: <StabilimentoPage nav={navigate} lang={lang} setLang={setLang} />,
     ristorante: <RistorantePage nav={navigate} lang={lang} setLang={setLang} />,
     menu: <MenuPage nav={navigate} lang={lang} setLang={setLang} />,

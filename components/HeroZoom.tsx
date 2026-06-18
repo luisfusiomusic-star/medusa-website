@@ -4,10 +4,12 @@
  * Home hero — full-screen video (TIME-DRIVEN). The video fills the viewport
  * from the start (no zoom/expand on either axis).
  *
- * On mount, once the video can play, the MEDUSA loader is dismissed
- * (`medusa:frames-ready`); the video then plays full-screen for a short hold
- * before crossfading out as the destination picker fades in. No scroll
- * listeners; the page scrolls normally as soon as the picker appears.
+ * Playback is gated on `start`: a returning visitor (language already chosen)
+ * starts immediately; a first-time visitor's video stays paused at frame 0
+ * until they pick a language, so no footage plays behind the language splash.
+ * The loader still dismisses as soon as the video is ready (independent of
+ * `start`) so the splash can appear. Once playback starts, the video plays
+ * full-screen for a short hold, then crossfades into the destination picker.
  */
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
@@ -23,10 +25,12 @@ import FlowingMenu from '@/components/ui/FlowingMenu';
 
 const HOLD = 4600; // how long the full-screen video plays before the picker crossfades in (ms)
 
-export default function HeroZoom({ nav, lang }: { nav: NavFn; lang: Lang }) {
+export default function HeroZoom({ nav, lang, start }: { nav: NavFn; lang: Lang; start: boolean }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const startedRef = useRef(false);
   const [expanded, setExpanded] = useState(false);
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [ready, setReady] = useState(false);
 
   const t = I18N[lang].home;
 
@@ -66,51 +70,70 @@ export default function HeroZoom({ nav, lang }: { nav: NavFn; lang: Lang }) {
     if (expanded) document.body.style.overflow = '';
   }, [expanded]);
 
-  // Once the video can play: dismiss the loader, hold full-screen, then expand
-  // (crossfade to the picker). No size animation — the video never zooms.
+  // Readiness: as soon as the video can play, dismiss the MEDUSA loader (so the
+  // splash / page can show) and mark ready. NOT gated on `start` — the video
+  // stays paused until allowed to play.
   useEffect(() => {
     if (!videoSrc) return;
     const v = videoRef.current;
     if (!v) return;
     let cancelled = false;
-    let started = false;
-    let holdTimer: ReturnType<typeof setTimeout> | undefined = undefined;
+    let done = false;
     let readyFallback: ReturnType<typeof setTimeout> | undefined = undefined;
-    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    const begin = () => {
-      if (started || cancelled) return;
-      started = true;
+    const markReady = () => {
+      if (done || cancelled) return;
+      done = true;
       clearTimeout(readyFallback);
-      // Dismiss the MEDUSA loader (it gates on this event).
       document.dispatchEvent(new CustomEvent('medusa:frames-ready'));
-      if (reduce && reduce.matches) {
-        // Reduced-motion: jump straight to the picker.
-        setExpanded(true);
-        return;
-      }
-      holdTimer = setTimeout(() => {
-        if (!cancelled) setExpanded(true);
-      }, HOLD);
+      setReady(true);
     };
 
-    if (v.readyState >= 3) begin();
+    if (v.readyState >= 3) markReady();
     else {
-      v.addEventListener('canplaythrough', begin, { once: true });
-      v.addEventListener('loadeddata', begin, { once: true });
+      v.addEventListener('canplaythrough', markReady, { once: true });
+      v.addEventListener('loadeddata', markReady, { once: true });
     }
-    v.addEventListener('error', begin, { once: true }); // never brick on load failure
-    readyFallback = setTimeout(begin, 4000); // hard fallback if no event fires
+    v.addEventListener('error', markReady, { once: true }); // never brick on load failure
+    readyFallback = setTimeout(markReady, 4000); // hard fallback if no event fires
 
     return () => {
       cancelled = true;
-      clearTimeout(holdTimer);
       clearTimeout(readyFallback);
-      v.removeEventListener('canplaythrough', begin);
-      v.removeEventListener('loadeddata', begin);
-      v.removeEventListener('error', begin);
+      v.removeEventListener('canplaythrough', markReady);
+      v.removeEventListener('loadeddata', markReady);
+      v.removeEventListener('error', markReady);
     };
   }, [videoSrc]);
+
+  // Start playback + the reveal hold ONLY when ready AND allowed (`start`).
+  // Returning visitors: `start` is true from the off. First-timers: it flips
+  // true when the language splash is dismissed — the video begins from frame 0
+  // so nothing is lost while choosing.
+  useEffect(() => {
+    if (!ready || !start || startedRef.current) return;
+    startedRef.current = true;
+    const v = videoRef.current;
+    const reduce =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      setExpanded(true);
+      return;
+    }
+    if (v) {
+      try {
+        v.currentTime = 0;
+      } catch {
+        /* ignore */
+      }
+      const p = v.play();
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    }
+    const holdTimer = setTimeout(() => setExpanded(true), HOLD);
+    return () => clearTimeout(holdTimer);
+  }, [ready, start]);
 
   return (
     <div className="hero-zoom-wrap" data-bg-context="dark">
@@ -141,7 +164,6 @@ export default function HeroZoom({ nav, lang }: { nav: NavFn; lang: Lang }) {
           <video
             ref={videoRef}
             src={videoSrc}
-            autoPlay
             muted
             loop
             playsInline
