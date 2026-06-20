@@ -48,7 +48,7 @@ export default function Footer({ nav, lang, dark }: { nav: NavFn; lang: Lang; da
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/logo_medusa.png" alt="MEDUSA" loading="lazy" style={{ height: 64, width: 'auto', display: 'block' }} />
       </button>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, marginBottom: 18 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, marginBottom: 18 }}>
         <span
           style={{
             fontFamily: "'Jost', sans-serif",
@@ -60,17 +60,27 @@ export default function Footer({ nav, lang, dark }: { nav: NavFn; lang: Lang; da
         >
           Sponsored by
         </span>
-        <a
-          href={SPONSOR_LINK_SEDE}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ display: 'block', opacity: 0.75, transition: 'opacity 0.3s ease' }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-          onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.75')}
-        >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 18, flexWrap: 'wrap' }}>
+          <a
+            href={SPONSOR_LINK_SEDE}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'block', opacity: 0.75, transition: 'opacity 0.3s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.75')}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={SPONSOR_LOGO} alt="Autobi BMW MINI" loading="lazy" style={{ height: 64, width: 'auto', display: 'block' }} />
+          </a>
+          {/* Timossi — light (_bn) version for the dark footer, like the Autobi logo. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={SPONSOR_LOGO} alt="Sponsor" loading="lazy" style={{ height: 48, width: 'auto', display: 'block' }} />
-        </a>
+          <img
+            src="/timossi_bn.png"
+            alt="Timossi — Beverage & Food solution"
+            loading="lazy"
+            style={{ height: 40, width: 'auto', display: 'block', opacity: 0.75 }}
+          />
+        </div>
       </div>
       <div style={{ width: 36, height: 1, background: 'rgba(201,166,99,0.2)', margin: '0 auto 28px' }} />
       <p style={{ fontFamily: 'var(--font-serif)', fontSize: 15, fontStyle: 'italic', marginBottom: 26, lineHeight: 1.6 }}>
